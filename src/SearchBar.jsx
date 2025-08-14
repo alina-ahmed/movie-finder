@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { apiKey } from "./env";
+import { apiKey } from "/etc/secrets/env";
 import { useNavigate } from "react-router";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -77,5 +77,6 @@ function SearchBar(){
       </Box>
     )
 }
+
 
 export default SearchBar;
