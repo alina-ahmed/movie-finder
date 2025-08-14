@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { apiKey } from "./env.js";
+import { apiKey } from "/etc/secrets/env";
 import { useParams } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
@@ -125,5 +125,6 @@ function MovieDetails(){
     </div>
     );
 }
+
 
 export default MovieDetails;
