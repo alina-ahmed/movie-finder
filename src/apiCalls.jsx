@@ -1,4 +1,4 @@
-import { apiKey } from "./env";
+import { apiKey } from "/etc/secrets/env";
 
 const options ={
     method: 'GET',
@@ -20,3 +20,4 @@ export function get(url){
     return response;
 
 }
+
