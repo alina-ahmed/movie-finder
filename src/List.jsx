@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from "react";
-import { apiKey } from "/etc/secrets/env";
+import { apiKey } from "./env";
 import { NavLink, useNavigate } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
@@ -98,7 +98,7 @@ function List(props){
                         </Card>
                     ))
                     }
-                    <Button variant="contained" sx={{
+                    <Button variant="contained" onClick={navigateToAll} sx={{
                         position: 'relative',
                         bottom: '0px',
                         backgroundColor: 'black',
@@ -119,6 +119,5 @@ function List(props){
     </>
 );
 }
-
 
 export default List;
