@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { apiKey } from "/etc/secrets/env";
-import { useParams } from "react-router";
+import { apiKey } from "./env.js";
+import { useParams,useNavigate } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -8,7 +8,8 @@ import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IconButton from '@mui/material/IconButton';
 
 function MovieDetails(){
 
@@ -23,6 +24,13 @@ function MovieDetails(){
     const id = params.id;
     const imgBaseUrl = "https://image.tmdb.org/t/p/w500/";
 
+    const navigate = useNavigate();
+
+    function goBack(){
+        navigate(-1);
+
+    }
+
     function fetchMovieDetails(){
         const key = apiKey;
         const baseUrl = "https://api.themoviedb.org/3/movie/";
@@ -34,7 +42,6 @@ function MovieDetails(){
             }
         }
 
-
         fetch(baseUrl+id, options)
         .then(res => {
             if(res.ok){
@@ -44,17 +51,12 @@ function MovieDetails(){
 
         }, networkError => {
             console.log(networkError).message;
-
         })
         .then(jsonRes=>{
             console.log(jsonRes);
             setMovieDetails(jsonRes);
-
         })
-
     }
-
-
 
     return (
         <div>
@@ -64,6 +66,11 @@ function MovieDetails(){
            
              <Box sx={{ flexGrow: 1, backgroundColor: '#0b1329ff', width: '100%', color: 'white' }}>
                 <Grid container rowSpacing={3}>
+                       <Grid size={{ xs: 12, md: 12 }}>
+                            <IconButton aria-label="back" size="large" sx={{ float: "left", bottom: '50px'}} onClick={goBack}>
+                                <ArrowBackIcon fontSize="inherit" sx={{color: 'white'}}/>
+                            </IconButton>
+                    </Grid>
                     <Grid size={{ xs: 12, md: 4 }}>
                         <img src={imgBaseUrl+ movieDetails.poster_path} style={{width: "70%", height: 'auto'}}/>
                     </Grid>
@@ -125,6 +132,5 @@ function MovieDetails(){
     </div>
     );
 }
-
 
 export default MovieDetails;
